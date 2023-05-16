@@ -1,6 +1,6 @@
 export const tasks =[
     {
-        id:0,
+        id:1,
         title: 'my first task',
         description: 'my description task'
     },
