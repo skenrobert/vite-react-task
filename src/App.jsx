@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TaskForm from "./Components/TaskForm";
 import TaskList from "./Components/TaskList";
 import { tasks } from "./data/tasks";
+// import { Navigation } from "./Components/Navigation";
 
 function App() {
   //shortcut useStatesnippet
@@ -50,6 +51,9 @@ function App() {
 
   return (
     <div className="bg-zinc-900 h-screen">
+
+      {/* <Navigation/> */}
+
       <div className="container mx-auto p-4">
           {/* <TaskForm createTask={createTask} /> */}
           <TaskForm />
