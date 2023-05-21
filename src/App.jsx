@@ -2,7 +2,15 @@ import { useEffect, useState } from "react";
 import TaskForm from "./Components/TaskForm";
 import TaskList from "./Components/TaskList";
 import { tasks } from "./data/tasks";
-// import { Navigation } from "./Components/Navigation";
+
+import {Routes, Route} from 'react-router-dom'
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import Home from "./Components/Home";
+
+
+
+// import { Navi } from "./Components/Navi";
 
 function App() {
   //shortcut useStatesnippet
@@ -47,20 +55,35 @@ function App() {
 
   // }
 
+  function divRoutes(){
+
+    return ( 
+        <Routes>     
+            <Route path="/" element={ <Home/>} />
+            <Route path="about" element={ <About/>} />
+            <Route path="contact" element={ <Contact/>} />
+        </Routes>);
+  }
+
 
 
   return (
-    <div className="bg-zinc-900 h-screen">
+   <div>
+        <divRoutes/>
+        {/* <Navi/> */}
 
-      {/* <Navigation/> */}
+<h1>NO se que pasa</h1>
+<Home/>
 
-      <div className="container mx-auto p-4">
-          {/* <TaskForm createTask={createTask} /> */}
-          <TaskForm />
-          {/* <TaskList tasks={mapTask} deleteTask = {deleteTask} /> */}
-          <TaskList />
-      </div>
-    </div>
+        {/* <div className="bg-zinc-900 h-screen"> */}
+          {/* <div className="container mx-auto p-4"> */}
+              {/* <TaskForm createTask={createTask} /> */}
+              {/* <TaskForm /> */}
+              {/* <TaskList tasks={mapTask} deleteTask = {deleteTask} /> */}
+              {/* <TaskList /> */}
+          {/* </div> */}
+        {/* </div> */}
+  </div>
   );
 }
 

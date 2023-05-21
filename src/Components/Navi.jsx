@@ -1,17 +1,22 @@
 import Link from "react-router-dom";
 
-
-function Navigation() {
+function Navi() {
   return (
-    <div>Navigation</div>
-  )
+    <nav>
+        <ul>
+            <li><Link to="/"></Link></li>
+            <li><Link to="/about">about</Link></li>
+            <li><Link to="/contact">contact</Link></li>
+        </ul>
+    </nav>
+  );
 }
 
-export default Navigation
+export default Navi
 
 
 
-// export const Navigation = () => (
+// export const Navi = () => (
 //   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 //     <div className="container">
 //       <Link href="/" className="navbar-brand">
@@ -24,7 +29,7 @@ export default Navigation
 //         data-target="#navbarNav"
 //         aria-controls="navbarNav"
 //         aria-expanded="false"
-//         aria-label="Toggle navigation"
+//         aria-label="Toggle Navi"
 //       >
 //         <span className="navbar-toggler-icon" />
 //       </button>
