@@ -4,8 +4,19 @@ import DataTable from "react-data-table-component";
 
 export default function Root() {
     return (
-      <>
-        <div id="sidebar">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+        {/* <div id="sidebar">
           <h1>React Router Contacts</h1>
           <div>
             <form id="search-form" role="search">
@@ -43,7 +54,7 @@ export default function Root() {
         </div>
         <div id="detail">
             <Outlet />  
-        </div>
-      </>
+        </div> */}
+      </div>
     );
   }
