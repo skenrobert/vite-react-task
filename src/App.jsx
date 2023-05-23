@@ -9,19 +9,22 @@ import Contact from "./Components/Contact";
 import Home from "./Components/Home";
 
 
-
 // import { Navi } from "./Components/Navi";
 
 function App() {
   //shortcut useStatesnippet
-  // const [mapTask, setmapTask] = useState(tasks);
+  const [mapTask1, setmapTask] = useState(tasks);
 
-  // useEffect(() => {
-  //     setmapTask(mapTask)
-  // }, [])
+//   useEffect (() => {
+//     // setMaptaSk (MATTASK)
+// }, [console.log('here')])
+
 
   //shortcut clg
-  // console.log(mapTask)
+  
+  // console.log(mapTask1)
+  // fetchUsers(setError)
+  // console.log(users)
 
   // if (mapTask.length === 0) {
   //   return <h1>there not tasks now</h1>;
@@ -30,13 +33,13 @@ function App() {
   // function createTask(tasktitle, textDescription) {
   //   // go ro send en props createTask
 
-  //   const newTask = {
-  //     title: tasktitle,
-  //     id: mapTask.length +1,
-  //     description: textDescription,
-  //   };
+    // const newTask1 = {
+    //   title: tasktitle,
+    //   id: mapTask.length +1,
+    //   description: textDescription,
+    // };
 
-  //   setmapTask([...mapTask, newTask]); // create new array tasks and add task, create new array no change the main
+    // setmapTask([...mapTask, newTask]); // create new array tasks and add task, create new array no change the main
   //   //update maptask
 
   //   //other form is
@@ -55,25 +58,11 @@ function App() {
 
   // }
 
-  function divRoutes(){
-
-    return ( 
-        <Routes>     
-            <Route path="/" element={ <Home/>} />
-            <Route path="about" element={ <About/>} />
-            <Route path="contact" element={ <Contact/>} />
-        </Routes>);
-  }
-
-
-
   return (
    <div>
-        <divRoutes/>
         {/* <Navi/> */}
 
-<h1>NO se que pasa</h1>
-<Home/>
+  <Home/>
 
         {/* <div className="bg-zinc-900 h-screen"> */}
           {/* <div className="container mx-auto p-4"> */}
@@ -83,6 +72,25 @@ function App() {
               {/* <TaskList /> */}
           {/* </div> */}
         {/* </div> */}
+
+
+        {/* <ul className="list-group">
+        {users.map((user) => (
+          <li
+            className="list-group-item d-flex justify-content-between align-items-center list-group-item-action"
+            key={user.id}
+            onClick={() => router.push(`/users/${user.id}`)}
+          >
+            <div>
+              <h5>
+                {user.id}. {user.first_name} {user.last_name}
+              </h5>
+              <p>Email: {user.email}</p>
+            </div>
+            <img src={user.avatar} style={{ borderRadius: "50%" }} />
+          </li>
+        ))}
+      </ul> */}
   </div>
   );
 }
