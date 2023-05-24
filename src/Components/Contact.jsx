@@ -80,7 +80,6 @@ export default function Contact() {
 
   return (
     <div key={user.id} className="text-center">
-
       <div className="bg-orange-700 text-white p-4 rounded-md">
           <img className="float-left" src={imageUrl} alt="Imagen del usuario" />
           <h1 className="text-xl font-bold capitalize">Detalles de Usuario</h1>

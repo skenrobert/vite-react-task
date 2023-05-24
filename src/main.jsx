@@ -15,6 +15,7 @@ import {
 import ErrorPage from './Components/error-page.jsx'
 import Contact from './Components/Contact.jsx'
 import Root from './Components/root.jsx'
+import Navi, { Navi2 } from "./Components/Navi";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/about",
-    element: <div>Hello world!</div>,
+    element: <Navi2/>,
   },
   {
     path: "/autocompletar",
