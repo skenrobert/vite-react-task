@@ -47,6 +47,10 @@ const router = createBrowserRouter([
     path: "/about",
     element: <div>Hello world!</div>,
   },
+  {
+    path: "/autocompletar",
+    element: <div>Hello world!</div>,
+  },
   // {
   //   path: "/app",
   //   element: <App />,
