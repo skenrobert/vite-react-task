@@ -40,3 +40,43 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* datatable */
+/* .rdt_Table {
+  color: #2aa198;
+} */
+
+/* .rdt_TableRow {
+  color: #360000;
+} */
+.rdt_TableCol {
+  background: rgba(33, 28, 98, 0.606);
+}
+
+.rdt_TableCol_Sortable {
+  color: #2aa198;
+}
+
+/* .rdt_TableCell {
+  color: rgba(0,0,0,.54);
+} */
+
+/* .rdt_TableHeader{
+  color: #ffffff;
+} */
+/* .rdt_TableFooter{
+  color: #002b36;
+} */
+/* .rdt_TableHead{
+  color: #ffffff;
+} */
+/* .rdt_TableHeadRow{
+  color: #ffffff;
+} */
+/* .rdt_TableBody{
+  color: #ffffff;
+} */
+/* .rdt_ExpanderRow{
+  color: #002b36;
+} */

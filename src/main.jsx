@@ -14,8 +14,17 @@ import {
 } from "react-router-dom";
 import ErrorPage from './Components/error-page.jsx'
 import Contact from './Components/Contact.jsx'
-import Root from './Components/root.jsx'
+import Root from './Components/Root.jsx'
 import Navi, { Navi2 } from "./Components/Navi";
+import About from './Components/About.jsx'
+// import Login from './element/Pages/Auth/Login.jsx'
+import Login from './Components/Auth/Login.jsx'
+import Dashboard from './Components/Dashboard/dashboard.jsx'
+// import Index from './element/Pages/Dashboard/Index2.jsx'
+import Index from './element/Pages/Contacts/Index.jsx'
+import Layout from './element/Shared/Layout.jsx'
+import Personas from './Components/Dashboard/Personas.jsx'
+import Persona from './Components/Dashboard/Persona.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,12 +54,36 @@ const router = createBrowserRouter([
     element: <Contact />,
   },
   {
-    path: "/about",
+    path: "/menu",
     element: <Navi2/>,
+  },
+  {
+    path: "/about",
+    element: <About />,
   },
   {
     path: "/autocompletar",
     element: <div>Hello world!</div>,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
+  {
+    path: "/test",
+    element: <Layout />,
+  },
+  {
+    path: "/personas",
+    element: <Personas />,
+  },
+  {
+    path: "/personas/:personaId",
+    element: <Persona />,
   },
   // {
   //   path: "/app",

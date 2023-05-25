@@ -8,8 +8,22 @@ export const AppContex = createContext() // go have all variables and constant o
 
 export function AppContextProvider(props) {
     let x = 20
+    const url_backend ='http://localhost:85/test-backend/public/api/'
 
-  const [mapTask, setmapTask] = useState(tasks);
+    const usuario = {
+        id: 0,
+        email: "",
+        imagen: "",
+        estatus: true,
+        msgEstatus: "",
+        email_verified_at: "",
+        creador_id: 0,
+        persona_id: 0,
+        access_token:"",
+    }
+
+    const [mapTask, setmapTask] = useState(tasks);
+    const [seccion, setSeccion] = useState(usuario);
 
   function createTask(tasktitle, textDescription) {
     // go ro send en props createTask
@@ -19,6 +33,7 @@ export function AppContextProvider(props) {
       id: mapTask.length +1,
       description: textDescription,
     };
+
 
     setmapTask([...mapTask, newTask]); // create new array tasks and add task, create new array no change the main
   }
@@ -32,7 +47,11 @@ export function AppContextProvider(props) {
     <AppContex.Provider value={{ 
         mapTask: mapTask,
         deleteTask: deleteTask,
-        createTask: createTask
+        createTask: createTask,
+        x,
+        url_backend,
+        setSeccion: setSeccion,
+        seccion: seccion
     }}>
         {/* {/* <h1>appcontext</h1> */}
      {props.children}

@@ -2,22 +2,24 @@ import "styled-components";
 import { Outlet, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataTable, { createTheme } from "react-data-table-component";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { AppContex } from "../contex/AppContext";
+
 
 const Button = ({id}) => <button className="btn btn-primary" type="button" onClick={ () => alert(id)}>Editar</button>;
 
 export default function Root() {
   //1- Configurar los hooks 
     const [users, setUsers] = useState( [] )
-
-  //2- Funcion para mostrar los datos con fetch
-  // const URL = 'https://gorest.co.in/public/v2/users'
-  const URL = 'https://reqres.in/api/users/'
+    const {url_backend} = useContext(AppContex)
+    
+    //2- Funcion para mostrar los datos con fetch
+    const URL = url_backend + 'personas'
 
   const showData = async () => {
     const response = await fetch(URL)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     setUsers(data.data)
   }
 
@@ -30,7 +32,6 @@ export default function Root() {
   const columns = [
   {
     name: 'ID',
-    selector: 'ID',
     selector:row => row.id,
     center:true,
     sortable: true,
@@ -38,16 +39,14 @@ export default function Root() {
   },
   {
     name: 'Email',
-    selector: 'Email',
     sortable: true,
     selector:row => row.email,
     grow: 2
   },
   {
-    name: 'Name',
-    selector: 'Name',
+    name: 'Nombre',
     sortable: true,
-    selector:row => row.first_name,
+    selector:row => row.nombres,
     style: {
               backgroundColor: 'rgba(63, 195, 128, 0.9)',
               color: 'white',

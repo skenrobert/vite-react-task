@@ -4,7 +4,7 @@ import { AppContex } from "../contex/AppContext";
 
 function TaskCard({task}) { //task no is in the context because is the task will be delete, come loop
   
-  const {deleteTask} = useContext(AppContex)
+  const {deleteTask, x} = useContext(AppContex)
   
   // function deleteTask(){
   //     alert('delete task' + task.id);
@@ -21,7 +21,7 @@ function TaskCard({task}) { //task no is in the context because is the task will
       // onClick={deleteTask(task.id)} //fail below correct construction
       onClick={ () => deleteTask(task.id)
       }> 
-        Delete</button>
+        Delete {x}</button>
     </div>
 
     // </AppContext>

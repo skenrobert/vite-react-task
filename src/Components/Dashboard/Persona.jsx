@@ -2,11 +2,11 @@ import { Form, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Contact() {
-  const { contactId } = useParams();
+  const { personaId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [imageUrl, setImageUrl] = useState(null);
   const [error, setError] = useState(null);
-  const [url, setUrl] = useState("https://reqres.in/api/users/" + contactId)
+  const [url, setUrl] = useState("https://reqres.in/api/users/" + personaId)
   
   const [user, setUser] = useState(
     {
@@ -19,7 +19,7 @@ export default function Contact() {
   );
   
 
-  // console.log(contactId)
+  // console.log(personaId)
 
   useEffect(() => {
     if (isLoading) {
