@@ -72,11 +72,9 @@ export default function Personas() {
       button: true,
       grow: 3,  
       cell: (row) => <div className="text-center">
-      <FcSearch className="w-8 h-8 mb-0 p-0 float-left" onClick={() => 
-            navigate('/personas/' + row.id , { replace: true })
-      
-      
-      }/>
+        <a href={`/personas/` + row.id} rel="noopener noreferrer">
+            <FcSearch className="w-8 h-8 mb-0 p-0 float-left" />
+        </a>
       <FcEmptyTrash className="w-8 h-8 mb-0 p-0 float-right" onClick={() => alert(row.id)} />
       <FcEditImage className="w-8 h-8 mb-0 p-0 float-right" onClick={() => alert(row.id)} />
       </div>,

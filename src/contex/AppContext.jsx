@@ -9,6 +9,8 @@ export const AppContex = createContext() // go have all variables and constant o
 export function AppContextProvider(props) {
     let x = 20
     const url_backend ='http://localhost:85/test-backend/public/api/'
+    const url_img = "http://localhost:85/test-backend/public/images/img_api/"
+    const home = "http://localhost:5173/"
 
     const usuario = {
         id: 0,
@@ -50,6 +52,7 @@ export function AppContextProvider(props) {
         createTask: createTask,
         x,
         url_backend,
+        url_img,
         setSeccion: setSeccion,
         seccion: seccion
     }}>
