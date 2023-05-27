@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 
-//Global variables and constants
 import { AppContextProvider, AppContex } from './contex/AppContext'
 
 //route
@@ -17,16 +16,18 @@ import Contact from './Components/Contact.jsx'
 import Root from './Components/Root.jsx'
 import Navi, { Navi2 } from "./Components/Navi";
 import About from './Components/About.jsx'
-// import Login from './element/Pages/Auth/Login.jsx'
 import Login from './Components/Auth/Login.jsx'
 import Dashboard from './Components/Dashboard/dashboard.jsx'
-// import Index from './element/Pages/Dashboard/Index2.jsx'
 import Index from './element/Pages/Contacts/Index.jsx'
 import Layout from './element/Shared/Layout.jsx'
 import Personas from './Components/Dashboard/Personas.jsx'
 import Persona from './Components/Dashboard/Persona.jsx'
 import EditarPersona from './Components/Dashboard/EditarPersona.jsx'
 import InsertarPersona from './Components/Dashboard/InsertarPersona.jsx'
+import Usuarios from './Components/Auth/Usuarios.jsx'
+import Usuario from './Components/Auth/Usuario.jsx'
+import Usuariose from './Components/Auth/Usuariose.jsx'
+import Usuariosi from './Components/Auth/Usuariosi.jsx'
 
 const router = createBrowserRouter([
   {
@@ -81,7 +82,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/usuarios",
-    element: <h1> hola</h1>,
+    element: <Usuarios />,
   },
   {
     path: "/personas",
@@ -105,17 +106,22 @@ const router = createBrowserRouter([
     path: "/personasi",
     element: <InsertarPersona />,
   },
-  // {
-  //   path: "/app",
-  //   element: <App />,
-  //     children: [
-  //     {
-  //       path: "/app/:taco",
-  //       element: <Tacos />,
-  //     },
-  //   ],
-  // },
-  
+  {
+    path: "/usuarios",
+    element: <Usuarios />,
+  },
+  {
+    path: "/usuarios/:userId",
+    element: <Usuario />,
+  },
+  {
+    path: "/usuariose/:userId",
+    element: <Usuariose />,
+  },
+  {
+    path: "/usuariosi",
+    element: <Usuariosi />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

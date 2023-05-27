@@ -1,4 +1,4 @@
-import { Form, useParams } from "react-router-dom";
+import { Form, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AppContex } from "../../contex/AppContext";
 import MainMenu from '../Shared/MainMenu'
@@ -11,6 +11,7 @@ export default function Contact() {
   const [imageUrl, setImageUrl] = useState(null);
   const [error, setError] = useState(null);
   const { url_backend, url_img, seccion } = useContext(AppContex);
+  const navigate = useNavigate();
 
   if (seccion.access_token == "") {
     navigate('/login', { replace: true });

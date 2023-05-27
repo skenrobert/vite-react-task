@@ -8,7 +8,7 @@ import MainMenu from "../Shared/MainMenu";
 import TopHeader from "../Shared/TopHeader";
 import BottomHeader from "../Shared/BottomHeader";
 
-function InsertarPersona({}) {
+function Usuariosi({}) {
   const { url_backend, seccion } = useContext(AppContex);
   const [email, setEmail] = useState("");
   const [nombres, setNombre] = useState("");
@@ -33,7 +33,7 @@ function InsertarPersona({}) {
   }
 
   const insertarData = async () => {
-    let URL = url_backend + "personas";
+    let URL = url_backend + "users";
 
     const data = new FormData();
     data.append("email", email);
@@ -62,7 +62,7 @@ function InsertarPersona({}) {
       .then((res) => {
         let value = res.json();
         console.log(value);
-        navigate("/personas", { replace: true });
+        navigate("/usuarios", { replace: true });
       });
 
   };
@@ -251,4 +251,4 @@ function InsertarPersona({}) {
   );
 }
 
-export default InsertarPersona;
+export default Usuariosi;

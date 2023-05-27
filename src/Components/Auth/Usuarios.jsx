@@ -20,14 +20,14 @@ const Button = ({ id }) => (
   </button>
 );
 
-export default function Personas() {
+export default function Usuarios() {
   //1- Configurar los hooks
   const [users, setUsers] = useState([]);
   const { url_backend, seccion } = useContext(AppContex);
   const navigate = useNavigate();
 
   //2- Funcion para mostrar los datos con fetch
-  const URL = url_backend + "personas";
+  const URL = url_backend + "users";
 
   if (seccion.access_token == "") {
     navigate('/login', { replace: true });
@@ -44,7 +44,6 @@ export default function Personas() {
       },
     });
     const data = await response.json();
-    // console.log(data)
     setUsers(data.data);
   };
 
@@ -53,7 +52,7 @@ export default function Personas() {
   }, []);
 
   const deleteData = async (id) => {
-    const URL = url_backend + "personas/" + id;
+    const URL = url_backend + "users/" + id;
 
     const response = await fetch(URL, {
       method: "DELETE",
@@ -78,7 +77,7 @@ export default function Personas() {
   const columns = [
     {
       name: "Identificacion",
-      selector: (row) => row.identificacion,
+      selector: (row) => row.id,
       center: true,
       sortable: true,
       type: "numeric",
@@ -90,40 +89,22 @@ export default function Personas() {
       grow: 2,
     },
     {
-      name: "Nombre",
-      sortable: true,
-      selector: (row) => row.nombres,
-      style: {
-        // backgroundColor: "rgba(63, 195, 128, 0.9)",
-        // color: "white",
-      },
-    },
-    {
-      name: "Apellido",
-      sortable: true,
-      selector: (row) => row.apellidos,
-      style: {
-        // backgroundColor: "rgba(63, 195, 128, 0.9)",
-        // color: "white",
-      },
-    },
-    {
       name: "Acciones",
       selector: "Acciones",
       button: true,
       grow: 3,
       cell: (row) => (
         <div className="text-center">
-          <Link to={'/personas/'+row.id}>
+          <Link to={'/usuarios/'+row.id}>
               <FcSearch className="w-8 h-8 mb-0 p-0 float-left" />
             </Link>
 
           <FcEmptyTrash
             className="w-8 h-8 mb-0 p-0 float-right"
-            onClick={() => deleteData(row.id)}
+            onClick={() => alert('no puede borrar este usuario'+row.id)}
           />
 
-          <Link to={'/personase/'+row.id}>
+          <Link to={'/usuariose/'+row.id}>
               <FcEditImage className="w-8 h-8 mb-0 p-0 float-left" />
             </Link>
 
@@ -187,19 +168,15 @@ export default function Personas() {
             
             <div className="w-full h-full px-4 py-8 overflow-hidden overflow-y-auto md:p-12">
 
-            <div className="table-responsive">
-                {/* <a href={`/personasi` } rel="noopener noreferrer">
-                  <FcPlus className="w-8 h-8 mb-0 p-0 float-right" />
-                </a>   */}
-
-                <Link to={'/personasi/'}>
+            {/* <div className="table-responsive">
+                <Link to={'/usersi/'}>
                      <FcPlus className="w-8 h-8 mb-0 p-0 float-right" />
                 </Link>
-            </div>
+            </div> */}
 
               <div className="table-responsive">
                 <DataTable
-                  title="Lista de Personas"
+                  title="Lista de Usuario"
                   columns={columns}
                   data={users}
                   theme="custom"
