@@ -25,6 +25,8 @@ import Index from './element/Pages/Contacts/Index.jsx'
 import Layout from './element/Shared/Layout.jsx'
 import Personas from './Components/Dashboard/Personas.jsx'
 import Persona from './Components/Dashboard/Persona.jsx'
+import EditarPersona from './Components/Dashboard/EditarPersona.jsx'
+import InsertarPersona from './Components/Dashboard/InsertarPersona.jsx'
 
 const router = createBrowserRouter([
   {
@@ -70,20 +72,38 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/factura",
+    element: <h1> factura</h1>,
+  },
+  {
     path: "/dashboard",
     element: <Dashboard />,
   },
   {
-    path: "/test",
-    element: <Layout />,
+    path: "/usuarios",
+    element: <h1> hola</h1>,
   },
   {
     path: "/personas",
     element: <Personas />,
+    // children: [
+    //   {
+    //     path: "/personas/:personaId",
+    //     element: <EditarPersona />,
+    //   },
+    // ],
   },
   {
     path: "/personas/:personaId",
     element: <Persona />,
+  },
+  {
+    path: "/personase/:personaId",
+    element: <EditarPersona />,
+  },
+  {
+    path: "/personasi",
+    element: <InsertarPersona />,
   },
   // {
   //   path: "/app",

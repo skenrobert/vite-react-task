@@ -5,15 +5,15 @@ import DataTable, { createTheme } from "react-data-table-component";
 import React, { useState, useEffect, useContext } from "react";
 import { AppContex } from "../../contex/AppContext";
 
-import "../../../src/App.css"
+import "../../../src/App.css";
 
-import MainMenu from '../Shared/MainMenu'
+import MainMenu from "../Shared/MainMenu";
 // import FlashMessages from '../Shared/FlashMessages';
-import TopHeader from '../Shared/TopHeader';
-import BottomHeader from '../Shared/BottomHeader';
+import TopHeader from "../Shared/TopHeader";
+import BottomHeader from "../Shared/BottomHeader";
 
-import { FcAddImage, FcAddRow, FcAcceptDatabase, FcServices, FcPlus, FcPrivacy, FcAutomatic, FcSupport, FcSearch, FcPortraitMode, FcReuse, FcCalendar, FcHighPriority, FcContacts, FcEmptyTrash, FcEngineering, FcFile, FcBookmark, FcEditImage,  } from "react-icons/fc";
-
+import { FcSearch, FcEmptyTrash, FcEditImage, FcPlus} from "react-icons/fc";
+import EditarPersona from "./EditarPersona";
 
 const Button = ({ id }) => (
   <button className="btn btn-primary" type="button" onClick={() => alert(id)}>
@@ -24,14 +24,26 @@ const Button = ({ id }) => (
 export default function Personas() {
   //1- Configurar los hooks
   const [users, setUsers] = useState([]);
-  const { url_backend } = useContext(AppContex);
+  const { url_backend, seccion } = useContext(AppContex);
   const navigate = useNavigate();
 
   //2- Funcion para mostrar los datos con fetch
   const URL = url_backend + "personas";
 
+  if (seccion.access_token == "") {
+    navigate('/login', { replace: true });
+}
+
   const showData = async () => {
-    const response = await fetch(URL);
+    const response = await fetch(URL, {
+      method: "GET",
+      headers: {
+        Authorization: 'Bearer ' + seccion.access_token,
+        contentType: "application/x-www-form-urlencoded",
+        processData: false,
+        dataType: "json",
+      },
+    });
     const data = await response.json();
     // console.log(data)
     setUsers(data.data);
@@ -41,12 +53,33 @@ export default function Personas() {
     showData();
   }, []);
 
+  const deleteData = async (id) => {
+    const URL = url_backend + "personas/" + id;
+
+    const response = await fetch(URL, {
+      method: "DELETE",
+      headers: {
+        Authorization: 'Bearer ' + seccion.access_token,
+        contentType: "application/x-www-form-urlencoded",
+        processData: false,
+        dataType: "json",
+      },
+    })
+      .catch((error) => console.error("Error:", error))
+      .then((res) => {
+        let value = res.json();
+        console.log(value);
+        alert("se borro con exito la persona");
+        showData();
+      });
+  };
+
   //3- Configuramos las columns para Datatables
 
   const columns = [
     {
-      name: "ID",
-      selector: (row) => row.id,
+      name: "Identificacion",
+      selector: (row) => row.identificacion,
       center: true,
       sortable: true,
       type: "numeric",
@@ -67,37 +100,37 @@ export default function Personas() {
       },
     },
     {
+      name: "Apellido",
+      sortable: true,
+      selector: (row) => row.apellidos,
+      style: {
+        // backgroundColor: "rgba(63, 195, 128, 0.9)",
+        // color: "white",
+      },
+    },
+    {
       name: "Acciones",
       selector: "Acciones",
       button: true,
-      grow: 3,  
-      cell: (row) => <div className="text-center">
-        <a href={`/personas/` + row.id} rel="noopener noreferrer">
-            <FcSearch className="w-8 h-8 mb-0 p-0 float-left" />
-        </a>
-      <FcEmptyTrash className="w-8 h-8 mb-0 p-0 float-right" onClick={() => alert(row.id)} />
-      <FcEditImage className="w-8 h-8 mb-0 p-0 float-right" onClick={() => alert(row.id)} />
-      </div>,
-      // cell: (row) => <FcSupport className="w-20 h-20 px-4 " />,
-      // cell: (row) => <Button id={row.id} />  < FcAddImage  />,
-    },
-    {
-      name: "Poster Link",
-      button: true,
+      grow: 3,
       cell: (row) => (
-        <a href={`/personas/` + row.id} rel="noopener noreferrer">
-          Show
-        </a>
+        <div className="text-center">
+          <Link to={'/personas/'+row.id}>
+              <FcSearch className="w-8 h-8 mb-0 p-0 float-left" />
+            </Link>
+
+          <FcEmptyTrash
+            className="w-8 h-8 mb-0 p-0 float-right"
+            onClick={() => deleteData(row.id)}
+          />
+
+          <Link to={'/personase/'+row.id}>
+              <FcEditImage className="w-8 h-8 mb-0 p-0 float-left" />
+            </Link>
+
+        </div>
       ),
     },
-    // {
-    //   		cell: () => <Icon style={{ fill: '#43a047' }} />,
-    //   		width: '56px', // custom width for icon button
-    //   		style: {
-    //   			borderBottom: '1px solid #FFFFFF',
-    //   			marginBottom: '-1px',
-    //   		},
-    // },
   ];
 
   //tema
@@ -129,7 +162,6 @@ export default function Personas() {
         disabled: "rgba(0,0,0,.12)",
       },
     },
-    "dark"
   );
 
   // paginacion en español
@@ -144,7 +176,7 @@ export default function Personas() {
   return (
     <div>
       <div className="flex flex-col">
-        <h1 className="mb-8 text-3xl font-bold">Dashboard</h1>
+        <h1 className="mb-8 text-3xl font-bold">Test React Farmart </h1>
 
         <div className="flex flex-col h-screen">
           <div className="md:flex">
@@ -152,8 +184,19 @@ export default function Personas() {
             <BottomHeader />
           </div>
           <div className="flex flex-grow overflow-hidden">
-            <MainMenu className="flex-shrink-0 hidden w-56 p-12 overflow-y-auto bg-indigo-800 md:block" />
-            <div className="w-full px-4 py-8 overflow-hidden overflow-y-auto md:p-12">
+            <MainMenu className="flex-shrink-0 hidden w-36 p-12 overflow-y-auto bg-indigo-800 md:block" />
+            
+            <div className="w-full h-full px-4 py-8 overflow-hidden overflow-y-auto md:p-12">
+
+            <div className="table-responsive">
+                {/* <a href={`/personasi` } rel="noopener noreferrer">
+                  <FcPlus className="w-8 h-8 mb-0 p-0 float-right" />
+                </a>   */}
+
+                <Link to={'/personasi/'}>
+                     <FcPlus className="w-8 h-8 mb-0 p-0 float-right" />
+                </Link>
+            </div>
 
               <div className="table-responsive">
                 <DataTable
@@ -164,15 +207,15 @@ export default function Personas() {
                   pagination
                   paginationComponentOptions={paginacionOpciones}
                   fixedHeader
-                  fixedHeaderScrollHeight="600px"
+                  fixedHeaderScrollHeight="400px"
                   // selectableRows
                 />
               </div>
-
             </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 }

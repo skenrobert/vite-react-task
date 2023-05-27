@@ -52,20 +52,17 @@ export default () => {
               access_token: value.access_token,
             }
             setSeccion(seccion => LoginUsuario)
-            navigate('/dashboard', { replace: true });
+            navigate('/personas', { replace: true });
 
       }else{
         alert(value.message)
         setInputEmail("")
         setInputPassword("")
       }
-
-
-
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 bg-indigo-900">
+    <div className="flex items-center justify-center min-h-screen w-screen bg-indigo-900">
       <div className="w-full max-w-md">
         {/* <Logo
           className="p-20 mx-auto"
@@ -81,12 +78,12 @@ export default () => {
               className="mt-10"
               label="Email"
               name="email"
-              type="email"
+              type="text"
               // errors={errors.email}
               value={inputEmail}
+              autoFocus
               onChange={(e) => {
                 setInputEmail(e.target.value);
-                console.log(e.target.value);
               }}
             />
             <TextInput
@@ -98,7 +95,6 @@ export default () => {
               value={inputPassword}
               onChange={(e) => {
                 setInputPassword(e.target.value);
-                console.log(e.target.value);
               }}
             />
             <label
@@ -108,7 +104,7 @@ export default () => {
               <input
                 name="remember"
                 id="remember"
-                className="mr-1"
+                className="ml-36"
                 type="checkbox"
                 // checked={data.remember}
                 onChange={e => {setRemember(e.target.checked);
@@ -124,8 +120,7 @@ export default () => {
             <LoadingButton
               type="submit"
               // loading={processing}
-              className="btn-indigo"
-            >
+              className="bg-indigo-900 px-2 py-1 text-white">
               Login
             </LoadingButton>
           </div>

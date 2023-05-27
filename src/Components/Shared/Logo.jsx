@@ -3,7 +3,7 @@ import React from 'react';
 
 export default props => (
 <img
-    src="../../unnamed.jpg"
+    src=""
     alt="imagen"
     height="500"
     width="250"

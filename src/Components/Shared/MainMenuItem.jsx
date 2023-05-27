@@ -8,7 +8,6 @@ export default ({ icon, link, text }) => {
   const iconClasses = {
     'text-white fill-current': true,
     'text-indigo-100 group-hover:text-white fill-current': !true,
-    'bg-white':true,
   };
 
   const textClasses = {
@@ -23,7 +22,6 @@ export default ({ icon, link, text }) => {
             <Link to={link} className="nav-link">
               <Icon name={icon} className={iconClasses} />
               <div className={textClasses}>{text}</div>
-              {/* < FcAddImage  /> */}
             </Link>
           </li>
         </ul>

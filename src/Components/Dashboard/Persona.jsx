@@ -10,8 +10,11 @@ export default function Contact() {
   const [isLoading, setIsLoading] = useState(true);
   const [imageUrl, setImageUrl] = useState(null);
   const [error, setError] = useState(null);
-  const { url_backend, url_img } = useContext(AppContex);
+  const { url_backend, url_img, seccion } = useContext(AppContex);
 
+  if (seccion.access_token == "") {
+    navigate('/login', { replace: true });
+  }
 
   const [user, setUser] = useState(
     {
@@ -38,9 +41,15 @@ export default function Contact() {
       let url = url_backend + "personas/" + personaId
       async function fetchData() {
         try {
-          const response = await fetch(
-            url
-          );
+          const response = await fetch(url, {
+            method: "GET",
+            headers: {
+              Authorization: 'Bearer ' + seccion.access_token,
+              contentType: "application/x-www-form-urlencoded",
+              processData: false,
+              dataType: "json",
+            },
+          });
           if (response.ok) {
             const res = await response.json();
             setImageUrl(url_img + 'personas/' + res.data.imagen);
@@ -102,7 +111,7 @@ export default function Contact() {
 
     <div>
       <div className="flex flex-col">
-        <h1 className="mb-8 text-3xl font-bold">Dashboard</h1>
+        <h1 className="mb-8 text-3xl font-bold">Test React Farmart</h1>
 
         <div className="flex flex-col h-screen">
           <div className="md:flex">
@@ -110,7 +119,7 @@ export default function Contact() {
             <BottomHeader />
           </div>
           <div className="flex flex-grow overflow-hidden">
-            <MainMenu className="flex-shrink-0 hidden w-56 p-12 overflow-y-auto bg-indigo-800 md:block" />
+            <MainMenu className="flex-shrink-0 hidden w-36 p-12 overflow-y-auto bg-indigo-800 md:block" />
             <div className="w-full px-4 py-20 overflow-hidden overflow-y-auto ms-12">
 
               <div key={user.id} className="text-left">
@@ -142,14 +151,6 @@ export default function Contact() {
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
   );
 }
 

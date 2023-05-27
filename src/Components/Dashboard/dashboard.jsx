@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className="flex flex-col">
-        <h1 className="mb-8 text-3xl font-bold">Dashboard</h1>
+        <h1 className="mb-8 text-3xl font-bold text-center">Test Front Farmart</h1>
 
         <div className="flex flex-col h-screen">
           <div className="md:flex">
@@ -17,7 +17,7 @@ const Dashboard = () => {
             <BottomHeader />
           </div>
           <div className="flex flex-grow overflow-hidden">
-            <MainMenu className="flex-shrink-0 hidden w-56 p-12 overflow-y-auto bg-indigo-800 md:block" />
+            <MainMenu className="flex-shrink-0 hidden w-36 p-12 overflow-y-auto bg-indigo-800 md:block" />
             <div className="w-full px-4 py-8 overflow-hidden overflow-y-auto md:p-12">
               {/* <FlashMessages /> */}
               {/* {children} */}
