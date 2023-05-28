@@ -1,8 +1,8 @@
 import "styled-components";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataTable, { createTheme } from "react-data-table-component";
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { AppContex } from "../../contex/AppContext";
 
 import "../../../src/App.css";
@@ -14,11 +14,11 @@ import BottomHeader from "../Shared/BottomHeader";
 
 import { FcSearch, FcEmptyTrash, FcEditImage, FcPlus} from "react-icons/fc";
 
-const Button = ({ id }) => (
-  <button className="btn btn-primary" type="button" onClick={() => alert(id)}>
-    Editar
-  </button>
-);
+// const Button = ({ id }) => (
+//   <button className="btn btn-primary" type="button" onClick={() => alert(id)}>
+//     Editar
+//   </button>
+// );
 
 export default function Personas() {
   //1- Configurar los hooks
@@ -50,12 +50,12 @@ export default function Personas() {
 
   useEffect(() => {
     showData();
-  }, []);
+  });
 
   const deleteData = async (id) => {
     const URL = url_backend + "personas/" + id;
 
-    const response = await fetch(URL, {
+     await fetch(URL, {
       method: "DELETE",
       headers: {
         Authorization: 'Bearer ' + seccion.access_token,
@@ -66,10 +66,11 @@ export default function Personas() {
     })
       .catch((error) => console.error("Error:", error))
       .then((res) => {
-        let value = res.json();
-        console.log(value);
         alert("se borro con exito la persona");
         showData();
+        return res.json();
+      }).then(function (data){
+        console.log(data);
       });
   };
 
