@@ -29,8 +29,9 @@ function test() {
     <div>test</div>
   )
 }
-
 export default test
+
+
 4. rfcredux => import React from 'react'
 import { connect } from 'react-redux'
 
